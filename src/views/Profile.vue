@@ -1,14 +1,14 @@
 <template>
   <div class="home">
-    <div v-for="race in races">
-      {{ race.name }}
-      |
-      {{ race.type }}
-      |
-      {{ race.date }}
-      |
-      {{ race.city }}
+    {{ user.name }}
+    {{ user.city }}
+    {{ user.completed_5k }}
+    {{ user.completed_10k }}
+    {{ user.completed_marathon }}
+    <div v-for="badge in badges">
+      {{ badge.name }}
     </div>
+    <!--     <div v-for:></div> -->
   </div>
 </template>
 
@@ -20,16 +20,15 @@ export default {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      races: [],
-      user: []
+      user: [],
+      badges: []
     };
   },
   created: function() {
-    axios.get("/api/races").then(response => {
-      this.races = response.data;
-    });
     axios.get("/api/users").then(response => {
       this.user = response.data;
+      this.badges = response.data.badges;
+      console.log(response);
     });
   },
   methods: {}
