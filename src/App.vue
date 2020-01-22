@@ -1,41 +1,67 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Races</router-link>
-      |
-      <router-link to="/profile">Profile</router-link>
-      |
-      <router-link to="/forums">Forums</router-link>
-      |
-      <router-link to="/signup">Signup</router-link>
-      |
-      <router-link to="/login">Login</router-link>
-      |
-      <router-link to="/logout">Logout</router-link>
-    </div>
     <router-view />
   </div>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<style></style>
 
-#nav {
-  padding: 30px;
-}
+<script>
+export default {
+  mounted: function() {
+    (function($) {
+      var $window = $(window),
+        $body = $("body");
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+      // Breakpoints.
+      breakpoints({
+        xlarge: ["1281px", "1680px"],
+        large: ["981px", "1280px"],
+        medium: ["737px", "980px"],
+        small: [null, "736px"]
+      });
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+      // Play initial animations on page load.
+      $window.on("load", function() {
+        window.setTimeout(function() {
+          $body.removeClass("is-preload");
+        }, 100);
+      });
+
+      // Dropdowns.
+      $("#nav > ul").dropotron({
+        mode: "fade",
+        noOpenerFade: true,
+        alignment: "center",
+        detach: false
+      });
+
+      // Nav.
+
+      // Title Bar.
+      $(
+        '<div id="titleBar">' +
+          '<a href="#navPanel" class="toggle"></a>' +
+          '<span class="title">' +
+          $("#logo h1").html() +
+          "</span>" +
+          "</div>"
+      ).appendTo($body);
+
+      // Panel.
+      $('<div id="navPanel">' + "<nav>" + $("#nav").navList() + "</nav>" + "</div>")
+        .appendTo($body)
+        .panel({
+          delay: 500,
+          hideOnClick: true,
+          hideOnSwipe: true,
+          resetScroll: true,
+          resetForms: true,
+          side: "left",
+          target: $body,
+          visibleClass: "navPanel-visible"
+        });
+    })(jQuery);
+  }
+};
+</script>

@@ -6,7 +6,8 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import Profile from "../views/Profile.vue";
 import Forum from "../views/Forum.vue";
-
+import Races from "../views/Races.vue";
+import Workouts from "../views/Workouts.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -14,6 +15,11 @@ const routes = [
     path: "/",
     name: "home",
     component: Home
+  },
+  {
+    path: "/races",
+    name: "races",
+    component: Races
   },
   {
     path: "/about",
@@ -47,6 +53,11 @@ const routes = [
     path: "/forums",
     name: "forums",
     component: Forum
+  },
+  {
+    path: "/workouts",
+    name: "workouts",
+    component: Workouts
   }
 ];
 

@@ -1,14 +1,20 @@
 <template>
-  <div class="home">
-    <div v-for="race in races">
-      {{ race.name }}
-      |
-      {{ race.type }}
-      |
-      {{ race.date }}
-      |
-      {{ race.city }}
-    </div>
+  <div id="page-wrapper">
+    <!-- Header -->
+    <section id="header" class="wrapper">
+      <!-- Logo -->
+      <div id="logo">
+        <h1><a href="/">Route-Runner</a></h1>
+        <p>
+          Please
+          <a href="/login">login</a>
+          or
+          <a href="/signup">sign up</a>
+          to continue
+        </p>
+      </div>
+    </section>
+    <section id="footer" class="wrapper"></section>
   </div>
 </template>
 
@@ -18,20 +24,9 @@
 import axios from "axios";
 export default {
   data: function() {
-    return {
-      message: "Welcome to Vue.js!",
-      races: [],
-      user: []
-    };
+    return {};
   },
-  created: function() {
-    axios.get("/api/races").then(response => {
-      this.races = response.data;
-    });
-    axios.get("/api/users").then(response => {
-      this.user = response.data;
-    });
-  },
+  created: function() {},
   methods: {}
 };
 </script>
