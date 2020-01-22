@@ -29,7 +29,7 @@
         <p>Completed 5ks: {{ user.completed_5k }}</p>
         <h1>Shoes</h1>
         <p></p>
-        <p v-for="shoe in shoes">{{ shoe.name }} -- {{ shoe.distance }}</p>
+        <p v-for="shoe in shoes">{{ shoe.name }} -- {{ shoe.distance }} miles</p>
         <!--         <p class="style2">
           Escape Velocity is a free responsive
           <br class="mobile-hide" />
