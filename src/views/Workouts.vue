@@ -1,10 +1,21 @@
 <template>
   <div class="workouts">
     <section id="header" class="wrapper">
-      <div id="logo">
+      <div v-if="distance !== null" id="logo">
         <h1>You ran</h1>
         <div>|</div>
         <h1>{{ distance }} miles</h1>
+        <div>|</div>
+        <h1>{{ time }}</h1>
+        <div>__</div>
+        <a
+          v-for="workout in workouts"
+          v-if="workout.id === currentWorkout"
+          v-on:click="deleteWorkout(workout)"
+          class="button style1"
+        >
+          Delete workout
+        </a>
       </div>
       <nav id="nav">
         <ul>
@@ -52,7 +63,9 @@ export default {
       current_workout: "",
       coordinate: [],
       start: [],
-      distance: 0
+      distance: null,
+      time: null,
+      currentWorkout: null
     };
   },
   mounted: function() {
@@ -148,11 +161,16 @@ export default {
     },
     showWorkout: function(workout) {
       this.distance = workout.distance;
+      this.time = workout.workout_time;
+      this.currentWorkout = workout.id;
       this.current_workout = workout.id;
       this.setupMap();
 
       console.log(this.coordinates);
       console.log(this.current_workout);
+    },
+    deleteWorkout: function(workout) {
+      axios.delete("/api/workouts/" + workout.id).then((this.distance = null));
     }
   }
 };

@@ -26,8 +26,8 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      email: "",
-      password: "",
+      email: "nick@email.com",
+      password: "password",
       errors: []
     };
   },
